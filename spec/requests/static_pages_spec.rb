@@ -2,31 +2,45 @@ require 'spec_helper'
 
 describe PagesController do
 
-  describe "GET 'home'" do
-    it "returns http success" do
+  let(:base_title) {"Ruby Sample App"}
+
+  describe "Home page" do
+    it "should have some content" do
       visit '/pages/home'
-      expect(page).to have_content("Home")
+      page.should have_selector('h1', :text => "Home")
     end
 
-    it "should have the right title" do
+    it "should have the title 'Home'" do
       visit '/pages/home'
-      page.should have_selector("title", :text => "Ruby Sample App | Home")
+      page.should have_selector("title", :text => "#{base_title} | Home")
     end
 
   end
 
-  describe "GET 'contact'" do
-    it "returns http success" do
+  describe "Contact page" do
+    it "should have some content" do
       visit '/pages/contact'
-      expect(page).to have_content("Contact")
+      page.should have_selector('h1', :text => "Contact")
     end
+
+    it "should have the title 'Contact'" do
+      visit '/pages/contact'
+      page.should have_selector("title", :text => "#{base_title} | Contact")
+    end
+
   end
 
-  describe "GET 'about'" do
-    it "returns http success" do
+  describe "About page" do
+    it "should have some content" do
       visit '/pages/about'
-      expect(page).to have_content("About")
+      page.should have_selector('h1', :text => "About")
     end
+
+    it "should have the title 'About'" do
+      visit '/pages/about'
+      page.should have_selector("title", :text => "#{base_title} | About")
+    end
+
   end
 
 end
