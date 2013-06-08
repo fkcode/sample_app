@@ -5,14 +5,19 @@ describe PagesController do
   let(:base_title) {"Ruby Sample App"}
 
   describe "Home page" do
-    it "should have some content" do
+    it "should have h1 Sample App" do
       visit '/pages/home'
-      page.should have_selector('h1', :text => "Home")
+      page.should have_selector("h1", :text => "Sample App")
     end
 
     it "should have the title 'Home'" do
       visit '/pages/home'
-      page.should have_selector("title", :text => "#{base_title} | Home")
+      page.should have_selector("title", :text => "#{base_title}")
+    end
+
+    it "should not have custom page title" do
+      visit root_path
+      page.should_not have_selector("title", :text => "| Home")
     end
 
   end
