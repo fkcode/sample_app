@@ -4,32 +4,26 @@ describe PagesController do
 
   let(:base_title) {"Ruby Sample App"}
 
+  subject { page }
+
   describe "Home page" do
-    it "should have h1 Sample App" do
-      visit '/pages/home'
-      page.should have_selector("h1", :text => "Sample App")
-    end
+    before { visit root_path }
 
-    it "should have the title 'Home'" do
-      visit '/pages/home'
-      page.should have_selector("title", :text => "#{base_title}")
-    end
+    it { should have_selector("h1", :text => "Sample App") }
 
-    it "should not have custom page title" do
-      visit root_path
-      page.should_not have_selector("title", :text => "| Home")
-    end
+    it { should have_selector("title", :text => "#{base_title}") }
 
+    it { should_not have_selector("title", :text => "| Home") }
   end
 
   describe "Contact page" do
     it "should have some content" do
-      visit '/pages/contact'
+      visit contact_path
       page.should have_selector('h1', :text => "Contact")
     end
 
     it "should have the title 'Contact'" do
-      visit '/pages/contact'
+      visit contact_path
       page.should have_selector("title", :text => "#{base_title} | Contact")
     end
 
@@ -37,13 +31,26 @@ describe PagesController do
 
   describe "About page" do
     it "should have some content" do
-      visit '/pages/about'
+      visit about_path
       page.should have_selector('h1', :text => "About")
     end
 
     it "should have the title 'About'" do
-      visit '/pages/about'
+      visit about_path
       page.should have_selector("title", :text => "#{base_title} | About")
+    end
+
+  end
+
+  describe "Help page" do
+    it "should have some content" do
+      visit help_path
+      page.should have_selector('h1', :text => "Help")
+    end
+
+    it "should have the title 'Help'" do
+      visit help_path
+      page.should have_selector("title", :text => "#{base_title} | Help")
     end
 
   end
